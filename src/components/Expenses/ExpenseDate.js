@@ -1,7 +1,7 @@
 import './ExpenseDate.css';
-import Card from './Card'
+import Card from '../UI/Card'
 
-function ExpenseDate(props){
+const ExpenseDate = (props) =>{
     console.log("date");
     console.log(props)
     const day = props.date.toLocaleString('en-US', {day: '2-digit'});
