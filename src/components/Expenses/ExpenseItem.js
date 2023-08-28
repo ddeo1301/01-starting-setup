@@ -1,11 +1,22 @@
 import ExpenseDate from './ExpenseDate';
 import ExpenseDetails from './ExpenseDetails';
+import React, {useState} from "react";
 import Card from '../UI/Card';
 import './ExpenseItem.css';
 
 const ExpenseItem = (props) => {
+    const[title, setTitle] = useState(props.title);
+    const[amount, setAmount] = useState(props.amount);
+    console.log("3 times executed")
+    
     const clickHandler = () => {
-        console.log("Clicked!!!");
+        setTitle("Updated")
+        console.log(title);
+    }
+
+    const clickAmount = () => {
+        setAmount("100$");
+        console.log(amount);
     }
 
     const deleteExpenseHandler = () => {
@@ -17,7 +28,8 @@ const ExpenseItem = (props) => {
     return (
         <Card className="expense-item">
                 <ExpenseDate date = {props.date}/>
-                < ExpenseDetails title={props.title} amount={props.amount} location={props.location} />
+                < ExpenseDetails title={title} amount={amount} location={props.location} />
+                <button onClick = {clickAmount}>Change Amount</button>
                 <button onClick = {clickHandler}>Change Title</button>
                 <button onClick = {deleteExpenseHandler}>Delete the Expense</button>
         </Card>
