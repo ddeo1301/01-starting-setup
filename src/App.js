@@ -1,4 +1,5 @@
 import ExpenseItem from "./components/Expenses/ExpenseItem";
+import NewExpense from './components/NewExpense/NewExpense';
 import './components/Expenses/ExpenseDetails.css';
 
 const App = () => {
@@ -12,6 +13,7 @@ const App = () => {
       return (
         <div >
           <h2>Let's get started!</h2>
+          <NewExpense/>
           <div className="expenses">     
               {expenses.map((expense) => ( 
                   <ExpenseItem
