@@ -17,9 +17,10 @@ const ExpenseItem = (props) => {
     }
 
     const deleteExpenseHandler = () => {
-        // Remove the expense item from the DOM
+       // props.onDelete(props.id);
         const expenseItem = document.querySelector('.expense-item');
         expenseItem.remove();
+        console.log("deleted")
     };
 
     return (
