@@ -6,39 +6,41 @@ import Card from "../UI/Card";
 import ExpensesFilter from "./ExpensesFilter";
 
 const Expenses = (props) => {
- // const [expenses, setExpenses] = useState(props.expenses);
-  const [filteredYear, setFilteredYear] = useState("2020");
+  const [filteredYear, setFilteredYear] = useState("2023");
 
   const filterChangeHandler = (selectedYear) => {
     setFilteredYear(selectedYear);
   };
 
-  // const deleteExpenseHandler = (expenseId) => {
-  //   // Remove the expense with the specified ID from the expenses array
-  //   setExpenses((prevExpenses) =>
-  //     prevExpenses.filter((expense) => expense.id !== expenseId)
-  //   );
-  // };
+  const filteredExpenses = props.items.filter((expense) => {
+    return expense.date.getFullYear().toString() === filteredYear;
+  });
+
+  let expensesContent = <p style={{color:"#ffffff"}}>No Expenses Found.</p>;
+
+  if (filteredExpenses.length > 0) {
+    expensesContent = filteredExpenses.map((expense) => (
+      <ExpenseItem
+        key={expense.id}
+        title={expense.title}
+        amount={expense.amount}
+        date={expense.date}
+      />
+    ));
+  }
 
   return (
-    <Card className="expenses">
-      <ExpensesFilter
-        selected={filteredYear}
-        onChangeFilter={filterChangeHandler}
-      />
-
-      {props.items.map((expense) => (
-        <ExpenseItem
-          key={expense.id}
-          id={expense.id}
-          title={expense.title}
-          amount={expense.amount}
-          date={expense.date}
-          location={expense.locationOfExpenditure}
-          //onDelete={deleteExpenseHandler}
+    <div>
+      <Card className="expenses">
+        <ExpensesFilter
+          selected={filteredYear}
+          onChangeFilter={filterChangeHandler}
         />
-      ))}
-    </Card>
+
+        {expensesContent}
+
+      </Card>
+    </div>
   );
 };
 
