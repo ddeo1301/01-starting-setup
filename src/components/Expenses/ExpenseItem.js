@@ -17,20 +17,22 @@ const ExpenseItem = (props) => {
     }
 
     const deleteExpenseHandler = () => {
-       // props.onDelete(props.id);
         const expenseItem = document.querySelector('.expense-item');
         expenseItem.remove();
         console.log("deleted")
     };
 
     return (
-        <Card className="expense-item">
+        <li>
+           <Card className="expense-item">
                 <ExpenseDate date = {props.date}/>
                 < ExpenseDetails title={title} amount={amount} location={props.location} />
                 <button onClick = {clickAmount}>Change Amount</button>
                 <button onClick = {clickHandler}>Change Title</button>
                 <button onClick = {deleteExpenseHandler}>Delete the Expense</button>
-        </Card>
+           </Card>
+        </li>
+        
     );
 }
 
